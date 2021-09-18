@@ -72,7 +72,33 @@ const renderTweets = function(tweets) {
 }
 
 $(document).ready(function() {
+  //renderTweets dynamically
   renderTweets(tweets);
-  //console.log($tweet);
-  //$('#tweets-container').append($tweet); // to add it to the page so we can make sure it's got all the right elements, classes, etc.
+
+  //Submit form using Ajax
+  /*const form = $('#newTweetForm');
+  form.on('submit', function(event) {
+    event.preventDefault();
+    const serialisedData = $(this).serialise();
+    console.log(serialisedData);
+  });*/
+
+  $('#newTweetForm').submit(function(event) {
+    alert('Handler for .submit() called');
+    event.preventDefault();
+
+    const serialisedData = $(this).serialize();
+    console.log(serialisedData);
+    //Pass the data to the form with action='/tweets/ using method=post asyncronously. 
+    //$.post('/tweets/', serialisedData, () => {}, () => {}); 
+    //another jQuery syntax that uses promises. 
+    $.post('/tweets/', serialisedData)
+    /*.then((response) => {
+      console.log(response);
+      //renderTweets(tweets);
+    }); */
+
+  
+  });
+  
 });
