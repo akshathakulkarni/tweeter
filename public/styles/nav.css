@@ -1,0 +1,32 @@
+nav {
+  height: 120px;
+  width: 100%;
+  background-color: #4056A1;
+  color: #FFFF;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  /*position: fixed;
+  top: 0;
+  width: 100%;*/
+}
+
+span {
+  font-family: 'Bungee', cursive;
+  padding-top: 1.5em;
+  margin-top: 2em;
+  
+}
+
+.write-tweet {
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+  font-family:  sans-serif;
+  /*padding-bottom: 1.5em;*/
+}
+
+.fas {
+  color: red;
+}
+
+
