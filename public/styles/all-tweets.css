@@ -1,0 +1,29 @@
+#tweets-container {
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px;
+}
+
+#tweets-container header {
+  background-color: #f4f1ec;
+  height: 100px;
+}
+
+#tweets-container header h6 {
+  color: #898fc8;
+}
+
+
+#tweets-container form p{
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+  border-bottom: 2px solid black;
+}
+#tweets-container footer .fas {
+  color: #656fca;
+}
+
+
+#tweets-container .fas:hover {
+  background-color: #c8c864;
+}
