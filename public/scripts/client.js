@@ -4,6 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+
 const createTweetElement = (tweetObj) => {
   /*const $name = $('<h5>').text(`${tweetObj.user.name}`);
   const $handle = $('<h6>').text(`${tweetObj.user.handle}`);
@@ -11,6 +12,8 @@ const createTweetElement = (tweetObj) => {
   const $timePassed = timeago.format(`${tweetObj.created_at}`);
   const $avatar = $('img')*/
 
+  //Preventing XSS with escaping.
+  
   const $tweetObj = `<article>` +
                       `<header>` +
                         `<h5>${tweetObj.user.name}</h5>` +
@@ -37,13 +40,31 @@ const renderTweets = function(tweets) {
   
   for(const tweet of tweets){
     const $tweet = createTweetElement(tweet);
-    $container.append($tweet);
+    $container.prepend($tweet);
   }
   return $container;
 }
 
+
 $(document).ready(function() {
-  
+
+  const loadTweets = () => {
+    //ajax request to get /tweets in json format
+    $.ajax({
+    url: '/tweets',
+    method: "GET",
+    dataType: "json",
+    success: (tweets) => {
+        //console.log(tweets);
+        //render tweets dynamically
+        renderTweets(tweets);
+    },
+    error : (error) => {
+        console.log(error);
+    }
+  })};
+
+  loadTweets();
   //Submit form using Ajax
 
   $('#newTweetForm').submit(function(event) {
@@ -59,7 +80,8 @@ $(document).ready(function() {
       event.preventDefault();
       return;
     }
-    alert('Handler for .submit() called');
+
+    //alert('Handler for .submit() called');
     event.preventDefault();
 
     const serialisedData = $(this).serialize();
@@ -69,25 +91,11 @@ $(document).ready(function() {
 
     //$.post('/tweets/', serialisedData, () => {}, () => {}); 
     
-    $.post('/tweets/', serialisedData)
-    
-    const loadTweets = () => {
-      //ajax request to get /tweets in json format
-      $.ajax({
-      url: '/tweets',
-      method: "GET",
-      dataType: "json",
-      success: (tweets) => {
-          //console.log(tweets);
-          //render tweets dynamically
-          renderTweets(tweets);
-      },
-      error : (error) => {
-          console.log(error);
-      }
-    })};
-
-    loadTweets();
+     $.post('/tweets/', serialisedData)
+    .then((response) => {
+      loadTweets();
+    })
+  
   });
   
 });
