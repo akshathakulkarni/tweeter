@@ -47,12 +47,24 @@ $(document).ready(function() {
   //Submit form using Ajax
 
   $('#newTweetForm').submit(function(event) {
+    //check if tweet content is empty
+    if($('#tweet-text').val() === '' || $('#tweet-text').val() === null) {
+      alert('Error : Empty tweet content');
+      event.preventDefault();
+      return;
+    }
+    //check it tweet content is too long
+    if(($('#tweet-text').val().length) > 140) {
+      alert('Error: Tweet content is too long');
+      event.preventDefault();
+      return;
+    }
     alert('Handler for .submit() called');
     event.preventDefault();
 
     const serialisedData = $(this).serialize();
-    console.log(serialisedData);
-
+    //console.log(serialisedData);
+    
     //Pass the data to the form with post method asyncronously.
 
     //$.post('/tweets/', serialisedData, () => {}, () => {}); 
@@ -66,7 +78,7 @@ $(document).ready(function() {
       method: "GET",
       dataType: "json",
       success: (tweets) => {
-          console.log(tweets);
+          //console.log(tweets);
           //render tweets dynamically
           renderTweets(tweets);
       },
