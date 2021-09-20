@@ -3,33 +3,6 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-console.log("check client.js loaded");
-
-const tweets = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-]
-
 
 const createTweetElement = (tweetObj) => {
   /*const $name = $('<h5>').text(`${tweetObj.user.name}`);
@@ -50,9 +23,7 @@ const createTweetElement = (tweetObj) => {
                       `<span>${tweetObj.created_at}</span>`+
                       
                     `</article>`;
-  // const $tweetObj = $('<article>');
-  // $tweetObj.append($name, $handle, $content, $timePassed);
-  
+
   return $tweetObj;
 }
 
@@ -62,7 +33,7 @@ const renderTweets = function(tweets) {
   // takes return value and appends it to the tweets container
   
   $container = $('#tweets-container');
-  //$container.empty();
+  $container.empty();
   
   for(const tweet of tweets){
     const $tweet = createTweetElement(tweet);
@@ -72,16 +43,8 @@ const renderTweets = function(tweets) {
 }
 
 $(document).ready(function() {
-  //renderTweets dynamically
-  renderTweets(tweets);
-
+  
   //Submit form using Ajax
-  /*const form = $('#newTweetForm');
-  form.on('submit', function(event) {
-    event.preventDefault();
-    const serialisedData = $(this).serialise();
-    console.log(serialisedData);
-  });*/
 
   $('#newTweetForm').submit(function(event) {
     alert('Handler for .submit() called');
@@ -89,16 +52,30 @@ $(document).ready(function() {
 
     const serialisedData = $(this).serialize();
     console.log(serialisedData);
-    //Pass the data to the form with action='/tweets/ using method=post asyncronously. 
-    //$.post('/tweets/', serialisedData, () => {}, () => {}); 
-    //another jQuery syntax that uses promises. 
-    $.post('/tweets/', serialisedData)
-    /*.then((response) => {
-      console.log(response);
-      //renderTweets(tweets);
-    }); */
 
-  
+    //Pass the data to the form with post method asyncronously.
+
+    //$.post('/tweets/', serialisedData, () => {}, () => {}); 
+    
+    $.post('/tweets/', serialisedData)
+    
+    const loadTweets = () => {
+      //ajax request to get /tweets in json format
+      $.ajax({
+      url: '/tweets',
+      method: "GET",
+      dataType: "json",
+      success: (tweets) => {
+          console.log(tweets);
+          //render tweets dynamically
+          renderTweets(tweets);
+      },
+      error : (error) => {
+          console.log(error);
+      }
+    })};
+
+    loadTweets();
   });
   
 });
