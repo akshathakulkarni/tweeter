@@ -4,6 +4,11 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
 const createTweetElement = (tweetObj) => {
   /*const $name = $('<h5>').text(`${tweetObj.user.name}`);
@@ -13,6 +18,7 @@ const createTweetElement = (tweetObj) => {
   const $avatar = $('img')*/
 
   //Preventing XSS with escaping.
+  const safeHTML = `<p>${escape(tweetObj.content.text)}</p>`;
   
   const $tweetObj = `<article>` +
                       `<header>` +
@@ -20,7 +26,7 @@ const createTweetElement = (tweetObj) => {
                         `<h6>${tweetObj.user.handle}</h6>` +
                       `</header>` +
                       `<form>` +
-                        `<p>${tweetObj.content.text}</p>`+
+                        `<p>${safeHTML}</p>`+
                       `</form>` +
                       `<img src="${tweetObj.user.avatars}"></img>`+
                       `<span>${tweetObj.created_at}</span>`+
