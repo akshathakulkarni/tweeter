@@ -74,15 +74,22 @@ $(document).ready(function() {
   //Submit form using Ajax
 
   $('#newTweetForm').submit(function(event) {
+    $('#error').text("");
+    //$('#error').css();
     //check if tweet content is empty
     if($('#tweet-text').val() === '' || $('#tweet-text').val() === null) {
-      alert('Error : Empty tweet content');
+      //alert('Error : Empty tweet content');
+      $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
+      $('#error').text("!!! Empty tweet content! Please enter a valid tweet.");
+      $('#tweet-text').slideDown();
       event.preventDefault();
       return;
     }
     //check it tweet content is too long
     if(($('#tweet-text').val().length) > 140) {
-      alert('Error: Tweet content is too long');
+      //alert('Error: Tweet content is too long');
+      $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
+      $('#error').text("!!!Too long! Plz rspct our arbitrary limit of 140 chars.");
       event.preventDefault();
       return;
     }
@@ -97,7 +104,7 @@ $(document).ready(function() {
 
     //$.post('/tweets/', serialisedData, () => {}, () => {}); 
     
-     $.post('/tweets/', serialisedData)
+    $.post('/tweets/', serialisedData)
     .then((response) => {
       loadTweets();
     })

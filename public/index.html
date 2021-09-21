@@ -52,13 +52,16 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
+        <span id="error"></span>
+        <!--<h2>Compose Tweet</h2>-->
         
         <form id="newTweetForm">
           <div class="textarea-container">
             <label for="tweet-text">What are you humming about?</label>
             <textarea name="text" id="tweet-text"></textarea>
+            
           </div>
+          
           <div>
             <button class="btn btn-primary" type="submit">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
@@ -85,5 +88,17 @@
       
     </main>
   </body>
+  <!--<script>
+    function errorMessage() {
+      let error = document.getElementById("error");
+      if (document.getElementById("tweet-text").value === '' || document.getElementById("tweet-text").value === null) {
+        error.innerHTML = "<span>"+"Tweet content is empty! Please enter a valid text.</span>";
+      } else if(document.getElementById("tweet-text").value.length > 140) {
+        error.innerHTML = "<span>"+"Tweet content is too long! Please enter a valid text.</span>";
+      } else {
+        error.innerHTML = "";
+      }
+    }
+  </script>-->
   
 </html>
