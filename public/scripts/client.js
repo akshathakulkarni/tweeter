@@ -70,7 +70,7 @@ $(document).ready(function() {
   })};
 
   loadTweets();
-  
+
   //Submit form using Ajax
 
   $('#newTweetForm').submit(function(event) {
@@ -80,8 +80,9 @@ $(document).ready(function() {
     $('#error').css({'border':'none', 'color':'white'});
 
     //check if tweet content is empty
-    if($('#tweet-text').val() === '' || $('#tweet-text').val() === null) {
-      $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
+    if($('#tweet-text').val() === '' || $('#tweet-text').val() === null || ( $.trim( $('#tweet-text').val() ) == '' ))
+    {
+      $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px",});
       $('#error').text("!!!Empty tweet content! Please enter a valid tweet.");
       $('#tweet-text').slideDown();
       event.preventDefault();
