@@ -31,6 +31,10 @@
   margin-top : 8px;
 }
 
+.btn:hover {
+  background-color: #6a7ec0;
+}
+
 .counter {
   font-family: 'Bungee', cursive;
   margin-top : 7px;
