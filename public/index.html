@@ -37,69 +37,51 @@
     <nav>
       <span>TWEETER</span>
       <div class='write-tweet'>
-        <p><h6><b>Write</b> a new tweet<br><i class="fas fa-angle-double-down"></i></h6></p>
+        <p><b>Write</b> a new tweet<br><i class="fas fa-angle-double-down"></i></p>
       </div>
     </nav>
-    <header>
+    <header class='main-header'>
       <div>
           <img src="/images/profile-hex.png"> 
       </div>
       <br>
       <div>
-        <h2>Your Name</h2>
+        <h2>Akshatha Kulkarni</h2>
       </div>
     </header>
 
     <!-- Page-specific (main) content here -->
-    <main class="container">
-      <section class="new-tweet">
-        <span id="error"></span>
-        <!--<h2>Compose Tweet</h2>-->
-        
-        <form id="newTweetForm">
-          <div class="textarea-container">
-            <label for="tweet-text">What are you humming about?</label>
-            <textarea name="text" id="tweet-text"></textarea>
-            
-          </div>
+    <main>
+      <aside class='aside'>
+        <div>
+            <img src="/images/profile-hex.png"> 
+        </div>
+       
+        <div>
+          <h2>Your Name</h2>
+        </div>
+      </aside>
+      <div class="container">
+        <section class="new-tweet">
+          <span id="error"></span>
+          <!--<h2>Compose Tweet</h2>-->
           
-          <div>
-            <button class="btn btn-primary" type="submit">Tweet</button>
-            <output name="counter" class="counter" for="tweet-text">140</output>
-          </div>
-        </form>
-      </section>
-      <section id="tweets-container">
-        <!--<article >
-          <header>
-            <img src="https://i.imgur.com/73hZDYK.png" width: 10 height: 10>
-            <h5>Newton</h5>
-            <h6>@SirIsaac</h6>
-          </header>
-          <form>
-            <p>If I have seen further it is by standing on the shoulders of giants.</p>
+          <form id="newTweetForm">
+            <div class="textarea-container">
+              <label for="tweet-text">What are you humming about?</label>
+              <textarea name="text" id="tweet-text"></textarea>
+            </div>
+            <div class="tweet-submit">
+              <button class="btn btn-primary" type="submit">Tweet</button>
+              <output name="counter" class="counter" for="tweet-text">140</output>
+            </div>
           </form>
-          <footer>
-            <i class="fas fa-flag"></i>
-            <i class="fas fa-retweet"></i>
-            <i class="fas fa-heart"></i>
-          </footer>
-        </article>-->
-      </section>
-      
+        </section>
+        <section id="tweets-container">
+          
+        </section>
+      </div>
     </main>
   </body>
-  <!--<script>
-    function errorMessage() {
-      let error = document.getElementById("error");
-      if (document.getElementById("tweet-text").value === '' || document.getElementById("tweet-text").value === null) {
-        error.innerHTML = "<span>"+"Tweet content is empty! Please enter a valid text.</span>";
-      } else if(document.getElementById("tweet-text").value.length > 140) {
-        error.innerHTML = "<span>"+"Tweet content is too long! Please enter a valid text.</span>";
-      } else {
-        error.innerHTML = "";
-      }
-    }
-  </script>-->
   
 </html>
