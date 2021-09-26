@@ -9,30 +9,31 @@
 }
 
 .new-tweet label {
-  align-self:flex-start;
+  align-self : flex-start;
+  font-family: sans-serif;
 }
 
 .textarea-container {
   display: flex;
   flex-direction: column;
-  
 }
+
+.tweet-submit {
+  display: flex;
+  justify-content: space-between;
+} 
 
 .btn {
   background-color: #4056A1;
   font-family: 'Bungee', cursive;
   color: white;
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 1em;
-  width: 15%;
-  
+  width: 4em;
+  margin-top : 8px;
 }
 
 .counter {
   font-family: 'Bungee', cursive;
-  display: flex;
-  justify-content:flex-end;
+  margin-top : 7px;
 }
 
 #tweet-text {
@@ -40,6 +41,7 @@
   outline: none;
   background : transparent;
   border-bottom: 2px solid black;
-  padding-top: 20px;
-  
+  height : 50px;
+  font-size : 20px;
+  font-family: sans-serif;
 }

@@ -1,29 +1,83 @@
 #tweets-container {
+  padding-top : 30px;
+}
+
+.tweet {
+  display: flex;
+  flex-direction : column;
+  justify-content: space-between;
+  font-family: sans-serif;
+  font-size :medium;
+  padding : 15px;
+  margin : 15px auto;
   border: 1px solid black;
   box-shadow: 5px 5px 5px;
+
 }
 
-#tweets-container header {
+#tweets-container header { 
+  color : black;
   background-color: #f4f1ec;
   height: 100px;
+  display : flex;
+  justify-content : space-between;
+} 
+
+#tweets-container .user-info {
+  display : flex;
+  flex-direction : row;
 }
 
-#tweets-container header h6 {
-  color: #898fc8;
+ #tweets-container .user-info img {
+  width : 35px;
+  height : 45px;
+  padding-right : 5px;
+} 
+
+#tweets-container header .handle {
+  width : 40%;
+  color: #abafd4;
+  display : flex;
+  justify-content: flex-end;
 }
 
 
-#tweets-container form p{
+
+#tweets-container footer span {
+  color : #333438;
+  font-family: sans-serif;
+  font-size : medium;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+#tweets-container  .tweet-content {
+  color: black;
   display: flex;
   justify-content: flex-start;
   padding-bottom: 10px;
   border-bottom: 2px solid black;
-}
-#tweets-container footer .fas {
-  color: #656fca;
+  word-break: break-word;
 }
 
+#tweets-container footer {
+  display: flex;
+  justify-content: space-between;
+}
+#tweets-container footer div {
+  color: #656fca;
+  font-size : 15px;
+  padding-top : 5px;
+}
+
+#tweets-container footer div > * {
+  margin: 0 3px;
+}
 
 #tweets-container .fas:hover {
-  background-color: #c8c864;
+  color: #bba646;
 }
+
+#tweets-container .tweet:hover {
+  color : #9398c5;
+} 
