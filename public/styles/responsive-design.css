@@ -1,12 +1,17 @@
-/* Smartphones: maximum width of around 420px */
-@media only screen and (max-width: 420px) {
+.aside {
+  display: none;
+}
+
+.container {
+  padding: 2rem 1rem 0 1rem;
+}
+
+/* Smartphones: minmum width of 320px and maximum width of around 420px */
+@media only screen and (min-width: 320px) and (max-width: 420px) {
   nav {
     background-color : #de9e31;
   }
-  .container {
-    width : 100%;
-    margin: 0 auto;
-  }
+
 }
 
 /* Tablet: minimum width of 768px to maximum width of 1024px */
@@ -14,28 +19,54 @@
   nav {
     background-color : #4056A1;
   }
+
   .container {
-    width : 100%;
-    margin: 0 auto;
+    padding: 3rem 2rem 0 2rem;
   }
 }
 
 /* Laptops / Desktops: minimum width of 1024px */
 @media only screen and (min-width: 1024px) {
-  header {
-    width : 33.3%;
-    float : left;
-    line-height : 600 px;
-    margin : 0 auto;
+  .aside {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 4rem;
+    margin: 160px 3rem 0 2.25rem;
+    height : fit-content;
+    background-color: #de9e31;
+    background-image: url(http://www.transparenttextures.com/patterns/asfalt-light.png);
+  }
+
+  aside div img {
+    max-width: 160px;
+  }
+
+  aside div h2 {
+    font-size: 2rem;
+    margin: 0;
   }
 
   .container {
-    width : 66.6%;
-    float : right;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     margin : 0 auto;
-    padding-top : 150px;
-    padding-right: 50px;
-    
-    
+    padding: 1rem 3rem 0 3rem;
+    height: auto;
+    margin-top: 140px;
   }
+
+  main {
+    display: flex;
+    width: 100%;
+    padding: 0px;
+  }
+
+  .main-header {
+    display: none;
+  }
+
 }
+
