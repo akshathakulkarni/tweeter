@@ -39,6 +39,12 @@
     background-image: url(http://www.transparenttextures.com/patterns/asfalt-light.png);
   }
 
+  .aside h2 {
+    font-family: sans-serif;
+    color: white;
+    font-size: large;
+  }
+
   aside div img {
     max-width: 160px;
   }
