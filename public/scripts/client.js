@@ -11,28 +11,28 @@ const escape = function (str) {
 };
 
 const createTweetElement = (tweetObj) => {
-  /*const $name = $('<h5>').text(`${tweetObj.user.name}`);
-  const $handle = $('<h6>').text(`${tweetObj.user.handle}`);
-  const $content = $('<p>').text(`${tweetObj.content.text}`);
   const $timePassed = timeago.format(`${tweetObj.created_at}`);
-  const $avatar = $('img')*/
-
-  //Preventing XSS with escaping.
-  const safeHTML = `<p>${escape(tweetObj.content.text)}</p>`;
   
-  const $tweetObj = `<article>` +
-                      `<header>` +
-                        `<h5>${tweetObj.user.name}</h5>` +
-                        `<h6>${tweetObj.user.handle}</h6>` +
-                      `</header>` +
-                      `<form>` +
-                        `<p>${safeHTML}</p>`+
-                      `</form>` +
-                      `<img src="${tweetObj.user.avatars}"></img>`+
-                      `<span>${tweetObj.created_at}</span>`+
-                      
-                    `</article>`;
-
+  const $tweetObj = `<article class="tweet"> 
+                      <header> 
+                        <div class='user-info'>
+                          <img width="30" height="40px" src="${tweetObj.user.avatars}"></img>
+                          <p>${tweetObj.user.name}</p>
+                        </div>
+                        <p class='handle'>${tweetObj.user.handle}</p>
+                      </header>
+                      <div class='tweet-content'>
+                        ${escape(tweetObj.content.text)}
+                      </div>
+                      <footer>
+                        <span>${$timePassed}</span>
+                        <div class='font'>
+                          <i class="fas fa-heart"></i>
+                          <i class="fas fa-retweet"></i>
+                          <i class="fas fa-flag"></i>
+                        </div>
+                      </footer>
+                    </article>`;
   return $tweetObj;
 }
 
@@ -61,7 +61,6 @@ $(document).ready(function() {
     method: "GET",
     dataType: "json",
     success: (tweets) => {
-        //console.log(tweets);
         //render tweets dynamically
         renderTweets(tweets);
     },
@@ -71,44 +70,46 @@ $(document).ready(function() {
   })};
 
   loadTweets();
+  
   //Submit form using Ajax
 
   $('#newTweetForm').submit(function(event) {
+
+    //For a valid tweet no error should be displayed. 
     $('#error').text("");
-    //$('#error').css();
+    $('#error').css({'border':'none', 'color':'white'});
+
     //check if tweet content is empty
     if($('#tweet-text').val() === '' || $('#tweet-text').val() === null) {
-      //alert('Error : Empty tweet content');
       $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
-      $('#error').text("!!! Empty tweet content! Please enter a valid tweet.");
+      $('#error').text("!!!Empty tweet content! Please enter a valid tweet.");
       $('#tweet-text').slideDown();
       event.preventDefault();
       return;
     }
-    //check it tweet content is too long
+
+    //check if tweet content is too long
     if(($('#tweet-text').val().length) > 140) {
-      //alert('Error: Tweet content is too long');
       $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
       $('#error').text("!!!Too long! Plz rspct our arbitrary limit of 140 chars.");
       event.preventDefault();
       return;
     }
 
-    //alert('Handler for .submit() called');
     event.preventDefault();
-
+    
     const serialisedData = $(this).serialize();
-    //console.log(serialisedData);
     
     //Pass the data to the form with post method asyncronously.
-
-    //$.post('/tweets/', serialisedData, () => {}, () => {}); 
     
     $.post('/tweets/', serialisedData)
+
     .then((response) => {
       loadTweets();
     })
-  
+
+    $('#tweet-text').val('');
+
   });
   
 });
