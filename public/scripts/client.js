@@ -109,7 +109,9 @@ $(document).ready(function() {
       loadTweets();
     })
 
+    //Clear the text area and reset the counter after submission.
     $('#tweet-text').val('');
+    $('.counter').val('140');
 
   });
   
