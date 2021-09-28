@@ -56,14 +56,12 @@ const errorCheck = function(event) {
   
   //For a valid tweet no error should be displayed. 
   $error.text("");
-  $error.css({'border':'none', 'color':'white'});
-
+  $error.removeClass('error');
+  
   //check if tweet content is empty
   if($tweetText.val() === '' || $tweetText.val() === null || ($.trim($tweetText.val()) === '' ))
   {
-    // $error.addClass('.class')
-    // $error.removeClass()
-    $error.css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px",});
+    $error.addClass('error');
     $error.text("!!!Empty tweet content! Please enter a valid tweet.");
     $tweetText.slideDown();
     return true;
@@ -71,7 +69,7 @@ const errorCheck = function(event) {
 
   //check if tweet content is too long
   if(($('#tweet-text').val().length) > 140) {
-    $error.css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
+    $error.addClass('error');
     $error.text("!!!Too long! Plz rspct our arbitrary limit of 140 chars.");
     $tweetText.slideDown();
     return true;
