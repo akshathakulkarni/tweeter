@@ -37,20 +37,52 @@ const createTweetElement = (tweetObj) => {
 }
 
 const renderTweets = function(tweets) {
-  // loops through tweets
-  // calls createTweetElement for each tweet
+$container = $('#tweets-container');
+  
+  const newTweet = tweets[tweets.length - 1];
+
+  // calls createTweetElement on newly created tweet.
+  const $tweet = createTweetElement(newTweet);
+
   // takes return value and appends it to the tweets container
+  $container.prepend($tweet);
   
-  $container = $('#tweets-container');
-  $container.empty();
-  
-  for(const tweet of tweets){
-    const $tweet = createTweetElement(tweet);
-    $container.prepend($tweet);
-  }
   return $container;
 }
 
+const errorCheck = function(event) {
+  $error = $('#error');
+  $tweetText = $('#tweet-text');
+  
+  //For a valid tweet no error should be displayed. 
+  $error.text("");
+  $error.css({'border':'none', 'color':'white'});
+
+  //check if tweet content is empty
+  if($tweetText.val() === '' || $tweetText.val() === null || ($.trim($tweetText.val()) === '' ))
+  {
+    // $error.addClass('.class')
+    // $error.removeClass()
+    $error.css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px",});
+    $error.text("!!!Empty tweet content! Please enter a valid tweet.");
+    $tweetText.slideDown();
+    return true;
+  }
+
+  //check if tweet content is too long
+  if(($('#tweet-text').val().length) > 140) {
+    $error.css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
+    $error.text("!!!Too long! Plz rspct our arbitrary limit of 140 chars.");
+    $tweetText.slideDown();
+    return true;
+  }
+  return false;
+}
+
+const resetForm = function() {
+  $('#tweet-text').val('');
+  $('.counter').val('140');
+}
 
 $(document).ready(function() {
 
@@ -75,43 +107,25 @@ $(document).ready(function() {
 
   $('#newTweetForm').submit(function(event) {
 
-    //For a valid tweet no error should be displayed. 
-    $('#error').text("");
-    $('#error').css({'border':'none', 'color':'white'});
-
-    //check if tweet content is empty
-    if($('#tweet-text').val() === '' || $('#tweet-text').val() === null || ( $.trim( $('#tweet-text').val() ) == '' ))
-    {
-      $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px",});
-      $('#error').text("!!!Empty tweet content! Please enter a valid tweet.");
-      $('#tweet-text').slideDown();
-      event.preventDefault();
-      return;
-    }
-
-    //check if tweet content is too long
-    if(($('#tweet-text').val().length) > 140) {
-      $('#error').css({'border':'3px', 'color': 'red', 'border-style': 'solid', 'font-family': 'sans-serif', 'padding-bottom':"5px"});
-      $('#error').text("!!!Too long! Plz rspct our arbitrary limit of 140 chars.");
-      event.preventDefault();
-      return;
-    }
-
     event.preventDefault();
-    
-    const serialisedData = $(this).serialize();
-    
-    //Pass the data to the form with post method asyncronously.
-    
-    $.post('/tweets/', serialisedData)
 
-    .then((response) => {
-      loadTweets();
-    })
+    // Error validation
 
-    //Clear the text area and reset the counter after submission.
-    $('#tweet-text').val('');
-    $('.counter').val('140');
+    if(!errorCheck(event)) {
+      
+      const serialisedData = $(this).serialize();
+    
+      //Pass the data to the form with post method asyncronously.
+    
+      $.post('/tweets/', serialisedData)
+
+      .then((response) => {
+        loadTweets();
+      })
+
+      //Clear the text area and reset the counter after submission.
+      resetForm();
+    }
 
   });
   
