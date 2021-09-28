@@ -18,3 +18,9 @@ Happy Tweeting!
 - body-parser 1.15.x or above
 - chance 1.0.2
 - md5 2.1.0
+
+## Screenshots
+
+!["Screenshot of Tweeter App"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Tweeter-app.png)
+!["Screenshot of Empty Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Empty-tweet.png)
+!["Screenshot of Long Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Too-long-tweet.png)
