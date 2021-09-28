@@ -12,7 +12,6 @@
   margin : 15px auto;
   border: 1px solid black;
   box-shadow: 5px 5px 5px;
-
 }
 
 #tweets-container header { 
@@ -41,8 +40,6 @@
   justify-content: flex-end;
 }
 
-
-
 #tweets-container footer span {
   color : #333438;
   font-family: sans-serif;
@@ -65,6 +62,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 #tweets-container footer div {
   color: #656fca;
   font-size : 15px;
