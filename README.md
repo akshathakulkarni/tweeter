@@ -21,6 +21,6 @@ Happy Tweeting!
 
 ## Screenshots
 
-!["Screenshot of Tweeter App"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Tweeter-app.png)
+!["Screenshot of Tweeter App"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Tweeter.png)
 !["Screenshot of Empty Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Empty-tweet.png)
 !["Screenshot of Long Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Too-long-tweet.png)
