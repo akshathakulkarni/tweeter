@@ -36,21 +36,29 @@ const createTweetElement = (tweetObj) => {
   return $tweetObj;
 }
 
-const renderTweets = function(tweets) {
-$container = $('#tweets-container');
-  
-  const newTweet = tweets[tweets.length - 1];
-
-  // calls createTweetElement on newly created tweet.
-  const $tweet = createTweetElement(newTweet);
-
-  // takes return value and appends it to the tweets container
-  $container.prepend($tweet);
-  
+const renderTweets = function(tweets, firstTweetOnly) {
+  $container = $('#tweets-container');
+  if(firstTweetOnly) {
+    //When submitting a new tweet, it should be added on top of the tweets feed
+    const newTweet = tweets[tweets.length - 1];
+    // calls createTweetElement on newly created tweet.
+    const $tweet = createTweetElement(newTweet);
+    // takes return value and appends it to the tweets container
+    $container.prepend($tweet);
+  } else {
+    // Initially to load all tweets upon refresh
+    // loops through tweets
+    // calls createTweetElement for each tweet
+    // takes return value and appends it to the tweets container
+    for(let tweet of tweets) {
+      $tweet = createTweetElement(tweet);
+      $container.prepend($tweet);
+    }
+  }
   return $container;
 }
 
-const errorCheck = function(event) {
+const errorCheck = function() {
   $error = $('#error');
   $tweetText = $('#tweet-text');
   
@@ -84,47 +92,38 @@ const resetForm = function() {
 
 $(document).ready(function() {
 
-  const loadTweets = () => {
+  const loadTweets = (firstTweetOnly) => {
     //ajax request to get /tweets in json format
     $.ajax({
-    url: '/tweets',
-    method: "GET",
-    dataType: "json",
-    success: (tweets) => {
-        //render tweets dynamically
-        renderTweets(tweets);
-    },
-    error : (error) => {
-        console.log(error);
-    }
-  })};
+        url: '/tweets',
+        method: "GET",
+        dataType: "json",
+        success: (tweets) => {
+          //render tweets dynamically
+          renderTweets(tweets, firstTweetOnly);
+        },
+        error : (error) => {
+          console.log(error);
+        }
+    })
+  };
 
   loadTweets();
 
   //Submit form using Ajax
 
   $('#newTweetForm').submit(function(event) {
-
     event.preventDefault();
-
     // Error validation
-
     if(!errorCheck(event)) {
-      
       const serialisedData = $(this).serialize();
-    
       //Pass the data to the form with post method asyncronously.
-    
       $.post('/tweets/', serialisedData)
-
-      .then((response) => {
-        loadTweets();
-      })
-
+        .then((response) => {
+        loadTweets(true);
+        })
       //Clear the text area and reset the counter after submission.
       resetForm();
     }
-
   });
-  
 });
