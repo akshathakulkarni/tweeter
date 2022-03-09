@@ -1,8 +1,18 @@
 # Tweeter Project
 
-Tweeter is a simple, single-page Twitter clone that uses jQuery, HTML5 and plain ol'CSS3. 
-You are limited to 140 characters per tweet. Enjoy the app on mobile, tablet or desktop. 
-Happy Tweeting!
+Tweeter is a simple, single-page Twitter clone focusing on front end and responsive design.
+
+This project uses HTML, CSS, JS, jQuery and AJAX for the front-end, and Node & Express for the back-end. 
+
+You are limited to 140 characters per tweet. Enjoy the app on mobile, tablet or desktop. Happy Tweeting!
+
+
+## Screenshots
+
+!["Screenshot of Tweeter App"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Tweeter.png)
+!["Screenshot of Empty Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Empty-tweet.png)
+!["Screenshot of Long Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Too-long-tweet.png)
+
 
 ## Getting Started
 
@@ -19,8 +29,3 @@ Happy Tweeting!
 - chance 1.0.2
 - md5 2.1.0
 
-## Screenshots
-
-!["Screenshot of Tweeter App"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Tweeter.png)
-!["Screenshot of Empty Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Empty-tweet.png)
-!["Screenshot of Long Tweet"](https://github.com/akshathakulkarni/tweeter/blob/master/docs/Too-long-tweet.png)
