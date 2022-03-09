@@ -20,5 +20,17 @@
       "text": "Je pense , donc je suis"
     },
     "created_at": 1633455546113
+  },
+  {
+    "user": {
+      "name": "AK",
+      "avatars": "https://i.imgur.com/nlhLi3I.png",
+      "handle": "@ak"
+    },
+    "content": {
+      "text": "When you know better, you do better"
+    },
+    "created_at": 1633567846113
+
   }
 ]
